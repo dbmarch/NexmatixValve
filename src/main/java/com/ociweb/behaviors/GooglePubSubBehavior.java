@@ -5,7 +5,7 @@ import com.google.api.core.ApiFutures;
 import com.ociweb.gl.api.*;
 import com.ociweb.iot.maker.FogCommandChannel;
 import com.ociweb.iot.maker.FogRuntime;
-import com.ociweb.pronghorn.pipe.BlobReader;
+import com.ociweb.pronghorn.pipe.ChannelReader;
 
 import com.google.cloud.pubsub.v1.Publisher;
 import com.google.protobuf.ByteString;
@@ -57,7 +57,7 @@ public class GooglePubSubBehavior implements PubSubListener, StartupListener, Sh
     }
 
     @Override
-    public boolean message(CharSequence charSequence, BlobReader messageReader) {
+    public boolean message(CharSequence charSequence, ChannelReader messageReader) {
         final String json = messageReader.readUTF();
         if (counter % interval == 0) {
             long thisTime = System.currentTimeMillis();
